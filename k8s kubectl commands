@@ -1,0 +1,146 @@
+batch29cluster 
+
+3 nodes
+os optomised image 
+
+
+2cpu 4 gb ram 50gb storage 
+
+
+---------------
+256 max 
+110 pods standar   * 3  4    330 applice  in cluster 
+
+pool 3 nodes
+
+
+maintenace 
+
+
+namespace 
+
+kubectl 
+approch 1 
+
+kubectl create ns sumeet
+ 
+	namespace/sumeet created
+
+approch 2 
+
+manifest -- code of kubernetes 
+
+yaml 
+
+vi dev.yaml
+
+--- 
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: dev
+
+Kubectl create –f dev.yaml
+
+
+----------
+docker run nginx
+docker run -p 80:80 nginx:lattest   --   browser interbet 
+
+kubectl run nginx  --image=nginx:1.16   -- 44 
+pod/nginx created
+
+
+
+
+volume 
+
+-v path 
+
+kubectl create deployment nginxdeploy --image=nginx
+
+
+netflix 
+
+RRR (volume data)  PV persistant(permamnet ) volume   -- same 
+
+subscription / user 
+
+james -- hd - 499  -- pod -- RRR pv attached -- pvc (claim)  1 am 
+amrit - mobile - 199    -- not allow in TV pd  RRR pv -- pvc -- 2am 
+geeta   -- uhd   -- big TV - 799 
+
+
+data -- IPL 
+IPL -- 2 lakhs 
+
+
+
+
+kubectl version --client
+
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+
+creation
+
+cloud beta container --project "march22paid" clusters create "project2" --zone "us-central1-c" --no-enable-basic-auth --cluster-version "1.24.10-gke.2300" --release-channel "regular" --machine-type "e2-standard-2" --image-type "COS_CONTAINERD" --disk-type "pd-balanced" --disk-size "50" --metadata disable-legacy-endpoints=true --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" --max-pods
+
+connect 
+
+gcloud container clusters get-credentials project2 --zone us-central1-c --project march22paid
+
+
+
+
+
+kubectl run nginx --image=nginx:1.9.12
+
+pod created 
+
+kubectl expose po nginx --port=80 --type=LoadBalancer
+
+
+List all pods in all namespaces
+	kubectl get pods --all-namespaces 
+            
+List all pods in the namespace, with more details
+	kubectl get pods -o wide  
+	
+Create	(first time)
+ 	kubectl create -f ns.yml
+
+Apply  (already created need changes)
+	 kubectl apply -f ./ns.yml
+ 
+Create an expose a nginx pod
+    kubectl run nginx --image=nginx:1.9.12
+    kubectl expose po nginx --port=80 --type=LoadBalancer
+
+Exec (go inside the container)
+kubectl exec -it nginx bash
+
+
+nginx
+
+docker exec -it nginx bin/bash 
+kubectl exec -it nginx bash
+
+
+----------
+
+--- 
+apiVersion: v1
+kind: po
+metadata: 
+  name: nginx
+
+
+
+
+
+frontend-694dc9bb97-j7qzv                1/1     Running   0          7m36s
+
+frontend-694dc9bb97-gd7fm
+
+paymentservice-5b585dc5ff-792g8  delete 
