@@ -1,0 +1,100 @@
+from jenkins/jenkins:lts-jdk11
+USER root
+RUN apt-get update -qq \
+    && apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+RUN add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable"
+RUN apt-get update  -qq \
+    && apt-get install docker.io -y
+RUN usermod -aG docker jenkins
+
+
+
+Now build the image 
+ 
+docker image build -t jenkins-docker .
+
+
+Successfully built 917690c1a1d1
+Successfully tagged jenkins-docker:latest
+
+
+-------------------
+
+Run the Jenkins Image 
+ 
+docker images
+docker ps
+docker container run -d -p 8080:8080 -v /var/run/docker.sock:/var/run/docker.sock jenkins-docker
+
+make sure port 8080 open in firewall 
+ 
+docker exec -it <containerID> bin/bash
+cat /var/jenkins_home/secrets/initialAdminPassword
+ 
+setup jenkins from the UI...
+ 
+like admin pwd and all required configuration..
+
+
+b2d2b73c076f--- i save this for pushing 
+
+
+-----------------
+
+
+pull image 
+remove the previous 
+run the image 2222
+
+
+
+
+
+
+node {
+   def dockerImageTag = "devopsexample${env.BUILD_NUMBER}"
+    stage('Deploy deploy command')
+{
+        sh "docker images"
+        sh "docker rm -f devopsexample "
+        sh "docker run --name devopsexample -d -p 2222:2222 vickeyyvickey/myapplication:latest"
+        //-Completion
+        echo "--------------------------------------------------------"
+        echo "View App deployed here: http://server-ip:2222"
+        echo "--------------------------------------------------------"
+    }
+}
+
+
+
+		//sh "ssh root@11.1.11.11"  // if remote machine 
+		//sh "docker login -u (username)-p (pwd)"  // if private repo
+
+
+
+
+
+
+
+CD - 6th build --- Started by user admin
+63b326cf3235: Layer already exists
+latest: digest: sha256:1b5354886682b87a2ef934834f600501f69a3be91b0b0b9e17ac4ecf45bf7224 size: 1159
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+
+7th 
+Triggering a new build of CD for Project5 #2
+
+Cd for project5 --- 1 --- Started by user admin
+
+CDeployment 
+
+Started by upstream project "CI of Java project1" build number 7
